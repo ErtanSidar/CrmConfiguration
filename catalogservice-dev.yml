@@ -1,10 +1,10 @@
 server:
-  port: 8080
+  port: 8083
 spring:
   application:
-    name: customerservice
+    name: catalogservice
   datasource:
-    url: jdbc:postgresql://localhost:5432/customerservice
+    url: jdbc:postgresql://localhost:5433/catalogservice
     username: postgres
     password: 1234
     driver-class-name: org.postgresql.Driver
@@ -12,12 +12,14 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      javax:
+        persistence:
+          validation:
+            mode: none
     show-sql: true
-  kafka:
-    producer:
-      bootstrap-servers: 127.0.0.1:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 eureka:
   client:
     fetchRegistry: true
